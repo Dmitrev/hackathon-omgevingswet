@@ -2,22 +2,27 @@
     $(function () {
         var wrapper = $('#wrapper');
         var animationSpeed = 500;
+        var running = false;
 
         $(document).on('slide.show', function(event){
             show(event.id);
         });
 
         function show(id){
-            slideDown();
-            $('.page').hide();
-            $('#'+id).show();
-            slideUp();
+            slideDown(function () {
+                $('.page').hide();
+                $('#'+id).show();
+                slideUp();
+            });
+
         }
         
-        function slideDown() {
+        function slideDown(callback) {
             wrapper.animate({
                 bottom: '-45%'
-            }, animationSpeed);
+            }, animationSpeed, function () {
+                callback();
+            });
         }
         
         function slideUp() {
