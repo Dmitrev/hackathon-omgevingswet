@@ -1,9 +1,19 @@
 $(function(){
 
+    var allowSlides = false;
+
+    $(document).on('keypress', function (e) {
+       if(e.keyCode === 113){
+           allowSlides = true;
+       }
+    });
+
     function trigger(id){
-        var event = jQuery.Event( "slide.show" );
-        event.id = id;
-        $(document).trigger(event);
+        if( allowSlides ) {
+            var event = jQuery.Event("slide.show");
+            event.id = id;
+            $(document).trigger(event);
+        }
     }
 
     $(document).on('click', 'canvas', function(){
