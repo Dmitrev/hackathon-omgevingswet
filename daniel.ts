@@ -30,23 +30,29 @@ class SimpleGame {
         console.log(this.map.width, this.map.height);
         this.bitmapMap.draw(this.game.cache.getImage("map"));
         this.bitmapMap.update();
-        //this.bitmapMap.addToWorld(0, 0);
+        this.bitmapMap.addToWorld(0, 0);
 
         this.map.inputEnabled = true;
         this.map.events.onInputDown.add((sprite: Phaser.Sprite, point: Phaser.Pointer) => {
             let localPosition: Phaser.Point = new Phaser.Point(point.position.x - this.map.x, point.position.y - this.map.y);
 
-            let hashmap: any = {};
+            let returnArray: any = [];
 
-            for (let x = 0, len = 100; x < len; x++) {
-                for (let y = 0, len = 100; y < len; y++) {
-                    let p: any = this.bitmapMap.getPixel(Phaser.Math.clamp(x - 50, 0, 100), Phaser.Math.clamp(y - 50, 0, 100));
+            let radius: number = 150;
+
+            for (let x = 0, len = radius; x < len; x++) {
+                for (let y = 0, len = radius; y < len; y++) {
+                    let p: any = this.bitmapMap.getPixel(Phaser.Math.clamp((localPosition.x + (x - radius*0.5)), 0, this.map.width), Phaser.Math.clamp((localPosition.y + (y - radius*0.5)), 0, this.map.height));
                     let hexString: string = Phaser.Color.RGBtoString(p.r, p.g, p.b, p.a);
-                    hashmap[hexString] = true;
+                    returnArray[hexString] = true;
+                    //this.bitmapMap.setPixel(Phaser.Math.clamp((localPosition.x + (x - radius*0.5)), 0, this.map.width), Phaser.Math.clamp((localPosition.y + (y - radius*0.5)), 0, this.map.height), 255, 0, 0, false);
                 }
             }
+            //this.bitmapMap.context.putImageData(this.bitmapMap.imageData, 0, 0);
+            //this.bitmapMap.dirty = true;
+            //this.bitmapMap.update();
 
-            console.log(hashmap);
+            console.log(returnArray);
         })
     }
 
