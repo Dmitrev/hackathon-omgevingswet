@@ -15,4 +15,8 @@ $(function(){
         trigger(target);
     })
 
+    $('button[data-hide]').on('click', function () {
+        $(document).trigger('slide.hide');
+    })
+
 });

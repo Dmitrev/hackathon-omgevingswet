@@ -8,6 +8,10 @@
             show(event.id);
         });
 
+        $(document).on('slide.hide', function(){
+            slideDown();
+        });
+
         function show(id){
             slideDown(function () {
                 $('.page').hide();
