@@ -1,9 +1,19 @@
 $(function(){
 
     var allowSlides = false;
+    var key = {
+      q: 81,
+      esc: 27
+    };
 
-    $(document).on('keypress', function (e) {
-       if(e.keyCode === 113){
+    $(document).on('keydown', function (e) {
+        console.log(e.keyCode);
+
+        if(e.keyCode === key.esc){
+            $(document).trigger('slide.hide');
+        }
+
+       if(e.keyCode === key.q){
            allowSlides = true;
        }
     });
