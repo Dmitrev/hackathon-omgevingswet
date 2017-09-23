@@ -18,8 +18,8 @@
   <div id="map"></div>
 <div id="wrapper">
     <div class="page" id="main-category">
+        <div class="wrap">
         <h1>Kies een category</h1>
-        <button type="button" data-hide="true" class="btn btn-default">X</button>
         <div class="container">
             <div class="row">
                 <div class="col-sm-6">
@@ -40,32 +40,54 @@
                 </div>
             </div>
         </div>
+        </div>
     </div>
     <div class="page" id="option">
-        <div class="container">
-            <div class="row">
-                <!-- Shizz wordt hier automatisch in ge-insert -->
+        <div class="wrap">
+            <div class="container">
+                <div class="row">
+                    <!-- Shizz wordt hier automatisch in ge-insert -->
+                </div>
             </div>
         </div>
     </div>
     <div class="page" id="check">
-        <h1>Check</h1>
-        <div class="alert alert-success">
-            <p>Je idee is door de check heen gekomen</p>
-            <button class="btn btn-primary" data-slide="details">
-                Klaar
-            </button>
+        <div class="wrap">
+            <h1>Check</h1>
+            <div class="alert alert-success">
+                <p>Je idee is door de check heen gekomen</p>
+                <button class="btn btn-primary" data-slide="details">
+                    Klaar
+                </button>
+            </div>
         </div>
     </div>
     <div class="page" id="details">
-        <h1>Details</h1>
+        <div class="wrap">
+            <h1>Vertel wat over je project</h1>
+            <div class="form-group">
+                <textarea id="comment" rows="5" class="form-control"></textarea>
+            </div>
+        </div>
     </div>
 </div>
 
   <script>
       var category = null;
       var option = null;
+      var title = null;
+      var desc = null;
+
+
       var colors = [];
+      var projects = {
+          sydney: {
+              title: 'dit',
+              desc: 'dat',
+              category:1,
+              option:3
+          }
+      };
 
       var categories = {
         1: [1,2,3],
@@ -78,19 +100,19 @@
           3: "Woning bouwen",
           4: "Erf- of parceelafscheiding plaatsen",
           5: "Reclame plaatsen",
-          6: "Sport of speeltoestel plaatsen",
+          6: "Sport of speeltoestel plaatsen"
       }
   </script>
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-<script src="https://code.jquery.com/jquery-3.1.0.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"
+  <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"
         integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
         crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"
         integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1"
         crossorigin="anonymous"></script>
-<script src="node_modules/phaser/build/phaser.js"></script>
+  <script src="node_modules/phaser/build/phaser.js"></script>
   <!-- Voor de slides die van onder de pagina komen -->
   <script src="slide.js"></script>
   <!-- Complexe map shizzle -->

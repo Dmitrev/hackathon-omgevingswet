@@ -8,7 +8,7 @@ $(function(){
 
     var cardTemplate =
         '<div class="col-sm-4">'+
-        '<div class="card" data-slide="option" data-category="{index}">' +
+        '<div class="card" data-slide="check" data-option="{index}">' +
         '<div class="card-body">{text}</div>' +
         '</div>'+
         '</div>';
@@ -33,17 +33,14 @@ $(function(){
         }
     }
 
-    $(document).on('click', 'canvas', function(){
-        trigger("main-category");
-    });
-
-    $('[data-slide]').on('click', function () {
+    $(document).on('click', '[data-slide]', function () {
         // If category button is clicked
-        if( typeof $(this).attr('data-category') === 'string'){
-            category = $(this).attr('data-category');
+        if( typeof $(this).attr('data-category') === 'string' ){
+            setCategory(this);
+        }
 
-            console.log(categories[category]);
-
+        if( typeof $(this).attr('data-option') === 'string' ) {
+            option = $(this).attr('data-option');
         }
         var target = $(this).data('slide');
         trigger(target);
@@ -52,5 +49,23 @@ $(function(){
     $('[data-hide]').on('click', function () {
         $(document).trigger('slide.hide');
     });
+
+    function setCategory(el) {
+        category = $(el).attr('data-category');
+        var optionIndexes = categories[category];
+        var html = '';
+
+        optionIndexes.forEach(function(value, index){
+            var optionName = options[value];
+            var optionTemplate = cardTemplate;
+            optionTemplate = optionTemplate.replace("{index}", value);
+            optionTemplate = optionTemplate.replace("{text}", optionName);
+            html += optionTemplate;
+        });
+
+        $('#option').find('.row').html(html);
+    }
+
+
 
 });
