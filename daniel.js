@@ -16,7 +16,7 @@ var SimpleGame = /** @class */ (function () {
     };
     SimpleGame.prototype.create = function () {
         var _this = this;
-        this.map = this.game.add.sprite(500, 500, "map");
+        this.map = this.game.add.sprite(0, 0, "map");
         this.bitmapMap = this.game.add.bitmapData(this.map.width, this.map.height);
         console.log(this.map.width, this.map.height);
         this.bitmapMap.draw(this.game.cache.getImage("map"));
@@ -25,15 +25,24 @@ var SimpleGame = /** @class */ (function () {
         this.map.inputEnabled = true;
         this.map.events.onInputDown.add(function (sprite, point) {
             var localPosition = new Phaser.Point(point.position.x - _this.map.x, point.position.y - _this.map.y);
-            var hashmap = {};
-            for (var x = 0, len = 100; x < len; x++) {
-                for (var y = 0, len_1 = 100; y < len_1; y++) {
-                    var p = _this.bitmapMap.getPixel(Phaser.Math.clamp(x - 50, 0, 100), Phaser.Math.clamp(y - 50, 0, 100));
+            var returnArray = [];
+            var radius = 150;
+            var hashMap = {};
+            for (var x = 0, len = radius; x < len; x++) {
+                for (var y = 0, len_1 = radius; y < len_1; y++) {
+                    var p = _this.bitmapMap.getPixel(Phaser.Math.clamp((localPosition.x + (x - radius * 0.5)), 0, _this.map.width), Phaser.Math.clamp((localPosition.y + (y - radius * 0.5)), 0, _this.map.height));
                     var hexString = Phaser.Color.RGBtoString(p.r, p.g, p.b, p.a);
-                    hashmap[hexString] = true;
+                    hashMap[hexString] = hexString;
+                    //this.bitmapMap.setPixel(Phaser.Math.clamp((localPosition.x + (x - radius*0.5)), 0, this.map.width), Phaser.Math.clamp((localPosition.y + (y - radius*0.5)), 0, this.map.height), 255, 0, 0, false);
                 }
             }
-            console.log(hashmap);
+            //this.bitmapMap.context.putImageData(this.bitmapMap.imageData, 0, 0);
+            //this.bitmapMap.dirty = true;
+            //this.bitmapMap.update();
+            for (var value in hashMap) {
+                returnArray.push(value);
+            }
+            console.log(returnArray);
         });
     };
     SimpleGame.prototype.update = function () {

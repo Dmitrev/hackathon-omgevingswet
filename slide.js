@@ -25,7 +25,9 @@
             wrapper.animate({
                 bottom: '-45%'
             }, animationSpeed, function () {
-                callback();
+                if( typeof callback === 'function'){
+                    callback();
+                }
             });
         }
         

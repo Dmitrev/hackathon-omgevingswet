@@ -13,6 +13,13 @@ html, body{
     bottom:-45%;
     height:45%;
 }
+.page{
+    height:100%;
+}
+
+.page .card{
+    cursor:pointer;
+}
 #main-category{
     background:#0091EA;
 }
