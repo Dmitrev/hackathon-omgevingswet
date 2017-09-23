@@ -78,34 +78,40 @@ var SimpleGame = /** @class */ (function () {
             var localPosition = new Phaser.Point(point.position.x - _this.map.x, point.position.y - _this.map.y);
             _this.graphicc.position.set(localPosition.x, localPosition.y);
             _this.mapMarker.position.set(localPosition.x, localPosition.y);
-            var returnArray = [];
-            var hashMap = {};
-            for (var x = 0, len = radius; x < len; x++) {
-                for (var y = 0, len_1 = radius; y < len_1; y++) {
-                    var p = _this.bitmapMap.getPixel(Phaser.Math.clamp((localPosition.x + (x - radius * 0.5)), 0, _this.map.width), Phaser.Math.clamp((localPosition.y + (y - radius * 0.5)), 0, _this.map.height));
-                    var hexString = Phaser.Color.RGBtoString(p.r, p.g, p.b, p.a);
+            /*let returnArray: any = [];
+
+
+            let hashMap: any = {};
+
+            for (let x = 0, len = radius; x < len; x++) {
+                for (let y = 0, len = radius; y < len; y++) {
+                    let p: any = this.bitmapMap.getPixel(Phaser.Math.clamp((localPosition.x + (x - radius * 0.5)), 0, this.map.width), Phaser.Math.clamp((localPosition.y + (y - radius * 0.5)), 0, this.map.height));
+                    let hexString: string = Phaser.Color.RGBtoString(p.r, p.g, p.b, p.a);
                     if (hashMap.hasOwnProperty(hexString)) {
-                        hashMap[hexString]++;
-                    }
-                    else {
+                        hashMap[hexString]++
+                    } else {
                         hashMap[hexString] = 1;
                     }
                 }
             }
-            for (var value in hashMap) {
+
+            for (let value in hashMap) {
                 returnArray.push(value);
             }
+
             console.log(hashMap);
+
             //colors = returnArray;
             colors = hashMap;
-            var aa = $.Event("slide.show");
+
+            let aa: any = $.Event("slide.show");
             aa.id = "main-category";
-            $(document).trigger(aa);
+            $(document).trigger(aa);*/
         }, this);
         var key1 = this.game.input.keyboard.addKey(Phaser.Keyboard.ONE);
         key1.onDown.add(function () {
-            _this.janCircle.position.set(1725, 692);
-            _this.janMarket.position.set(1725, 692);
+            _this.janCircle.position.set(1360, 650);
+            _this.janMarket.position.set(1360, 650);
         }, this);
     };
     return SimpleGame;

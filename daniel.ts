@@ -110,7 +110,7 @@ class SimpleGame {
             this.graphicc.position.set(localPosition.x, localPosition.y);
             this.mapMarker.position.set(localPosition.x, localPosition.y);
 
-            let returnArray: any = [];
+            /*let returnArray: any = [];
 
 
             let hashMap: any = {};
@@ -138,13 +138,13 @@ class SimpleGame {
 
             let aa: any = $.Event("slide.show");
             aa.id = "main-category";
-            $(document).trigger(aa);
+            $(document).trigger(aa);*/
         }, this);
 
         let key1 = this.game.input.keyboard.addKey(Phaser.Keyboard.ONE);
         key1.onDown.add(() => {
-            this.janCircle.position.set(1725, 692);
-            this.janMarket.position.set(1725, 692);
+            this.janCircle.position.set(1360, 650);
+            this.janMarket.position.set(1360, 650);
         }, this);
     }
 }
