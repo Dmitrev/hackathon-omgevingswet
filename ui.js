@@ -2,7 +2,6 @@ $(function(){
 
     var allowSlides = false;
     var key = {
-      q: 81,
       esc: 27
     };
 
@@ -19,18 +18,12 @@ $(function(){
         if(e.keyCode === key.esc){
             $(document).trigger('slide.hide');
         }
-
-       if(e.keyCode === key.q){
-           allowSlides = true;
-       }
     });
 
     function trigger(id){
-        if( allowSlides ) {
             var event = jQuery.Event("slide.show");
             event.id = id;
             $(document).trigger(event);
-        }
     }
 
     $(document).on('click', '[data-slide]', function () {
