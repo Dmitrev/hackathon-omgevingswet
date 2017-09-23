@@ -83,6 +83,9 @@ var SimpleGame = /** @class */ (function () {
             console.log(hashMap);
             //colors = returnArray;
             colors = hashMap;
+            var aa = $.Event("slide.show");
+            aa.id = "main-category";
+            $(document).trigger(aa);
         }, this);
         var key1 = this.game.input.keyboard.addKey(Phaser.Keyboard.ONE);
         key1.onDown.add(function () {

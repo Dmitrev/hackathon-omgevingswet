@@ -116,6 +116,10 @@ class SimpleGame {
 
             //colors = returnArray;
             colors = hashMap;
+
+            let aa: any = $.Event("slide.show");
+            aa.id = "main-category";
+            $(document).trigger(aa);
         }, this);
 
         let key1 = this.game.input.keyboard.addKey(Phaser.Keyboard.ONE);
