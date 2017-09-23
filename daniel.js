@@ -7,7 +7,7 @@ var SimpleGame = /** @class */ (function () {
             preload: this.preload,
             create: this.create,
             update: this.update
-        });
+        }, true);
     }
     SimpleGame.prototype.preload = function () {
         this.game.load.image("map", "TestMap.png");
@@ -44,6 +44,7 @@ var SimpleGame = /** @class */ (function () {
             }
             console.log(returnArray);
         });
+        this.map.input.draggable = true;
     };
     SimpleGame.prototype.update = function () {
     };
