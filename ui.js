@@ -53,6 +53,4 @@ $(function(){
         $(document).trigger('slide.hide');
     });
 
-A
-
 });
