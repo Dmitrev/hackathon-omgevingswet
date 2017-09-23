@@ -25,7 +25,7 @@
                 <div class="col-sm-4">
                     <div class="card" data-slide="option" data-category="1">
                         <div class="card-body">
-                            Verbouwen
+                            Verbouwen &amp; verbouwen
                         </div>
                     </div>
                 </div>
@@ -34,14 +34,14 @@
                 <div class="col-sm-4">
                     <div class="card" data-slide="option" data-category="2">
                         <div class="card-body">
-                            Terrein aanpassingen
+                            Terrein inrichten of veranderen
                         </div>
                     </div>
                 </div>
                 <div class="col-sm-4">
                     <div class="card" data-slide="option" data-category="3">
                         <div class="card-body">
-                            Nog iets ofzo
+                            Mileuwerkzaamheden
                         </div>
                     </div>
                 </div>
@@ -49,10 +49,40 @@
         </div>
     </div>
     <div class="page" id="option">
-        <h1>Option</h1>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="card" data-slide="check" data-option="1">
+                        <div class="card-body">
+                            Ik wil een bankje
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="card" data-slide="check" data-option="2">
+                        <div class="card-body">
+                            Ik wil een coffee schop
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="card" data-slide="check" data-option="3">
+                        <div class="card-body">
+                            Ik wil een basisschool
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     <div class="page" id="check">
         <h1>Check</h1>
+        <div class="alert alert-success">
+            <p>Je idee is door de check heen gekomen</p>
+            <button class="btn btn-primary" data-slide="details">
+                Klaar
+            </button>
+        </div>
     </div>
     <div class="page" id="details">
         <h1>Details</h1>
@@ -63,6 +93,20 @@
       var category = null;
       var option = null;
       var colors = [];
+
+      var categories = {
+        1: [1,2,3],
+        2: [4,5,6]
+      };
+
+      var options = {
+          1: "Privacyscherm plaatsen",
+          2: "Dakkapel plaatsen",
+          3: "Woning bouwen",
+          4: "Erf- of parceelafscheiding plaatsen",
+          5: "Reclame plaatsen",
+          6: "Sport of speeltoestel plaatsen",
+      }
   </script>
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
