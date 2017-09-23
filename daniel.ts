@@ -9,7 +9,7 @@ class SimpleGame {
             preload: this.preload,
             create: this.create,
             update: this.update
-        });
+        }, true);
     }
 
     game: Phaser.Game;
@@ -59,7 +59,8 @@ class SimpleGame {
             }
 
             console.log(returnArray);
-        })
+        });
+        this.map.input.draggable = true;
     }
 
     update() {
