@@ -37,11 +37,11 @@ $(function(){
         }
         var target = $(this).data('slide');
         trigger(target);
-    })
+    });
 
     $('[data-hide]').on('click', function () {
         $(document).trigger('slide.hide');
-    })
+    });
 
 
 
