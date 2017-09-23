@@ -24,13 +24,13 @@ class SimpleGame {
     }
 
     create() {
-        this.map = this.game.add.sprite(500, 500, "map");
+        this.map = this.game.add.sprite(0, 0, "map");
 
         this.bitmapMap = this.game.add.bitmapData(this.map.width, this.map.height);
         console.log(this.map.width, this.map.height);
         this.bitmapMap.draw(this.game.cache.getImage("map"));
         this.bitmapMap.update();
-        this.bitmapMap.addToWorld(0, 0);
+        //this.bitmapMap.addToWorld(0, 0);
 
         this.map.inputEnabled = true;
         this.map.events.onInputDown.add((sprite: Phaser.Sprite, point: Phaser.Pointer) => {
@@ -40,17 +40,23 @@ class SimpleGame {
 
             let radius: number = 150;
 
+            let hashMap: any = {};
+
             for (let x = 0, len = radius; x < len; x++) {
                 for (let y = 0, len = radius; y < len; y++) {
-                    let p: any = this.bitmapMap.getPixel(Phaser.Math.clamp((localPosition.x + (x - radius*0.5)), 0, this.map.width), Phaser.Math.clamp((localPosition.y + (y - radius*0.5)), 0, this.map.height));
+                    let p: any = this.bitmapMap.getPixel(Phaser.Math.clamp((localPosition.x + (x - radius * 0.5)), 0, this.map.width), Phaser.Math.clamp((localPosition.y + (y - radius * 0.5)), 0, this.map.height));
                     let hexString: string = Phaser.Color.RGBtoString(p.r, p.g, p.b, p.a);
-                    returnArray[hexString] = true;
+                    hashMap[hexString] = hexString;
                     //this.bitmapMap.setPixel(Phaser.Math.clamp((localPosition.x + (x - radius*0.5)), 0, this.map.width), Phaser.Math.clamp((localPosition.y + (y - radius*0.5)), 0, this.map.height), 255, 0, 0, false);
                 }
             }
             //this.bitmapMap.context.putImageData(this.bitmapMap.imageData, 0, 0);
             //this.bitmapMap.dirty = true;
             //this.bitmapMap.update();
+
+            for (let value in hashMap) {
+                returnArray.push(value);
+            }
 
             console.log(returnArray);
         })
