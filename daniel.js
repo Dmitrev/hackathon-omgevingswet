@@ -6,8 +6,7 @@ var SimpleGame = /** @class */ (function () {
     function SimpleGame() {
         this.game = new Phaser.Game(window.innerWidth, window.innerHeight, Phaser.AUTO, 'map', {
             preload: this.preload,
-            create: this.create,
-            update: this.update
+            create: this.create
         }, true);
     }
     SimpleGame.prototype.preload = function () {
@@ -49,14 +48,30 @@ var SimpleGame = /** @class */ (function () {
             $(document).trigger(aa);
         });
         //endregion
+        //region jan
+        this.janCircle = this.game.add.graphics(-10000, -10000);
+        this.janCircle.lineStyle(2, Phaser.Color.getColor32(200, 244, 66, 226), 0.6);
+        this.janCircle.beginFill(Phaser.Color.getColor32(60, 244, 66, 226), 0.5);
+        this.janCircle.drawCircle(0, 0, radius / 2);
+        this.janCircle.endFill();
+        this.map.addChild(this.janCircle);
+        this.janMarket = this.game.add.sprite(1093, 379, "marker");
+        this.map.addChild(this.janMarket);
+        this.janMarket.scale.set(0.4, 0.4);
+        this.janMarket.anchor.set(0.5, 1);
+        this.janMarket.inputEnabled = true;
+        this.janMarket.events.onInputDown.add(function () {
+            var aa = $.Event("slide.show");
+            aa.id = "main-category";
+            $(document).trigger(aa);
+        });
+        //endregion
         this.bitmapMap = this.game.add.bitmapData(this.map.width, this.map.height);
-        console.log(this.map.width, this.map.height);
         this.bitmapMap.draw(this.game.cache.getImage("map"));
         this.bitmapMap.update();
         this.map.inputEnabled = true;
         this.map.input.draggable = true;
         this.map.events.onDragStop.add(function (sprite, point) {
-            console.log(point.timeUp - point.timeDown);
             if (point.timeUp - point.timeDown > 100) {
                 return;
             }
@@ -89,10 +104,9 @@ var SimpleGame = /** @class */ (function () {
         }, this);
         var key1 = this.game.input.keyboard.addKey(Phaser.Keyboard.ONE);
         key1.onDown.add(function () {
-            alert("nieuwe post");
+            _this.janCircle.position.set(1725, 692);
+            _this.janMarket.position.set(1725, 692);
         }, this);
-    };
-    SimpleGame.prototype.update = function () {
     };
     return SimpleGame;
 }());

@@ -11,8 +11,7 @@ class SimpleGame {
     constructor() {
         this.game = new Phaser.Game(window.innerWidth, window.innerHeight, Phaser.AUTO, 'map', {
             preload: this.preload,
-            create: this.create,
-            update: this.update
+            create: this.create
         }, true);
     }
 
@@ -26,6 +25,8 @@ class SimpleGame {
     sydnyMarker: Phaser.Sprite;
     sydnyCircle: Phaser.Graphics;
 
+    janMarket: Phaser.Sprite;
+    janCircle: Phaser.Graphics;
 
     preload() {
         this.game.load.image("map", "TestMap.png");
@@ -73,16 +74,34 @@ class SimpleGame {
         });
         //endregion
 
+        //region jan
+        this.janCircle = this.game.add.graphics(-10000, -10000);
+        this.janCircle.lineStyle(2, Phaser.Color.getColor32(200, 244, 66, 226), 0.6);
+        this.janCircle.beginFill(Phaser.Color.getColor32(60, 244, 66, 226), 0.5);
+        this.janCircle.drawCircle(0, 0, radius / 2);
+        this.janCircle.endFill();
+        this.map.addChild(this.janCircle);
+
+        this.janMarket = this.game.add.sprite(1093, 379, "marker");
+        this.map.addChild(this.janMarket);
+        this.janMarket.scale.set(0.4, 0.4);
+        this.janMarket.anchor.set(0.5, 1);
+        this.janMarket.inputEnabled = true;
+        this.janMarket.events.onInputDown.add(() => {
+            let aa: any = $.Event("slide.show");
+            aa.id = "main-category";
+
+            $(document).trigger(aa);
+        });
+        //endregion
 
         this.bitmapMap = this.game.add.bitmapData(this.map.width, this.map.height);
-        console.log(this.map.width, this.map.height);
         this.bitmapMap.draw(this.game.cache.getImage("map"));
         this.bitmapMap.update();
 
         this.map.inputEnabled = true;
         this.map.input.draggable = true;
         this.map.events.onDragStop.add((sprite: Phaser.Sprite, point: Phaser.Pointer) => {
-            console.log(point.timeUp - point.timeDown);
             if (point.timeUp - point.timeDown > 100) {
                 return;
             }
@@ -124,16 +143,12 @@ class SimpleGame {
 
         let key1 = this.game.input.keyboard.addKey(Phaser.Keyboard.ONE);
         key1.onDown.add(() => {
-            alert("nieuwe post");
+            this.janCircle.position.set(1725, 692);
+            this.janMarket.position.set(1725, 692);
         }, this);
-    }
-
-    update() {
-
     }
 }
 
 window.onload = () => {
     var game = new SimpleGame();
-
 };
